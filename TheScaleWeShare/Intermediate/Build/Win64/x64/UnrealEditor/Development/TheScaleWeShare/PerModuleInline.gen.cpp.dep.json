@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\petri\\onedrive\\desktop\\projects\\games\\the-scale-we-share\\thescaleweshare\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\thescaleweshare\\permoduleinline.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\petri\\onedrive\\desktop\\projects\\games\\the-scale-we-share\\thescaleweshare\\intermediate\\build\\win64\\x64\\thescaleweshareeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\petri\\onedrive\\desktop\\projects\\games\\the-scale-we-share\\thescaleweshare\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\thescaleweshare\\definitions.thescaleweshare.h",
+            "c:\\program files\\epic games\\ue_5.6\\engine\\source\\runtime\\core\\public\\hal\\permoduleinline.inl"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

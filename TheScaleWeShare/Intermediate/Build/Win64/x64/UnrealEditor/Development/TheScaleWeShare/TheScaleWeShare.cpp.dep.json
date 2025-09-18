@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\petri\\onedrive\\desktop\\projects\\games\\the-scale-we-share\\thescaleweshare\\source\\thescaleweshare\\thescaleweshare.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\petri\\onedrive\\desktop\\projects\\games\\the-scale-we-share\\thescaleweshare\\intermediate\\build\\win64\\x64\\thescaleweshareeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\petri\\onedrive\\desktop\\projects\\games\\the-scale-we-share\\thescaleweshare\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\thescaleweshare\\definitions.thescaleweshare.h",
+            "c:\\users\\petri\\onedrive\\desktop\\projects\\games\\the-scale-we-share\\thescaleweshare\\source\\thescaleweshare\\thescaleweshare.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

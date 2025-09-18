@@ -1,0 +1,13 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-TheScaleWeShare.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:/Users/petri/OneDrive/Desktop/Projects/Games/The-Scale-We-Share/TheScaleWeShare/Intermediate/Build/Win64/x64/TheScaleWeShareEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.h.obj"
+"C:/Users/petri/OneDrive/Desktop/Projects/Games/The-Scale-We-Share/TheScaleWeShare/Intermediate/Build/Win64/x64/UnrealEditor/Development/TheScaleWeShare/TheScaleWeShare.cpp.obj"
+"C:/Users/petri/OneDrive/Desktop/Projects/Games/The-Scale-We-Share/TheScaleWeShare/Intermediate/Build/Win64/x64/UnrealEditor/Development/TheScaleWeShare/PerModuleInline.gen.cpp.obj"
+"C:/Users/petri/OneDrive/Desktop/Projects/Games/The-Scale-We-Share/TheScaleWeShare/Intermediate/Build/Win64/x64/UnrealEditor/Development/TheScaleWeShare/Default.rc2.res"
+/OUT:"C:/Users/petri/OneDrive/Desktop/Projects/Games/The-Scale-We-Share/TheScaleWeShare/Intermediate/Build/Win64/x64/UnrealEditor/Development/TheScaleWeShare/UnrealEditor-TheScaleWeShare.lib"

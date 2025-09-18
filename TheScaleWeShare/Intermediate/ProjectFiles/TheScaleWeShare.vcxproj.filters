@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\TheScaleWeShare.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\TheScaleWeShare.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\TheScaleWeShareEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\TheScaleWeShare">
+      <UniqueIdentifier>{6845E4AA-AE89-3048-8283-E7CE5BFF262C}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\TheScaleWeShare\TheScaleWeShare.Build.cs">
+      <Filter>Source\TheScaleWeShare</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\TheScaleWeShare\TheScaleWeShare.cpp">
+      <Filter>Source\TheScaleWeShare</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TheScaleWeShare\TheScaleWeShare.h">
+      <Filter>Source\TheScaleWeShare</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

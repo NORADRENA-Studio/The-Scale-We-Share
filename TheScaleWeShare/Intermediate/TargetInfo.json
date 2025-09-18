@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "TheScaleWeShare",
+			"Path": "..\\Source\\TheScaleWeShare.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "TheScaleWeShareEditor",
+			"Path": "..\\Source\\TheScaleWeShareEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

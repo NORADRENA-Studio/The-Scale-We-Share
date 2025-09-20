@@ -19,4 +19,4 @@ jobs:
 
       - name: Run naming convention check
         run: |
-          python3 check_naming.py Source/
+          python3 check_naming.py TheScaleWeShare/Source

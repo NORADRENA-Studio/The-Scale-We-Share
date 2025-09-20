@@ -13,9 +13,9 @@ BOOL_PREFIX = "b"
 # -----------------------------
 def check_class(name):
     if not any(name.startswith(p) for p in CLASS_PREFIXES):
-        return f"❌ Class '{name}' should start with {CLASS_PREFIXES}"
+        return f"❌ Class/Struct '{name}' should start with {CLASS_PREFIXES}"
     if not name[0].isupper():
-        return f"❌ Class '{name}' should be PascalCase"
+        return f"❌ Class/Struct '{name}' should be PascalCase"
     return None
 
 def check_function(name):
@@ -26,12 +26,16 @@ def check_function(name):
 def check_variable(name, is_bool=False, is_member=False):
     if is_bool and not name.startswith(BOOL_PREFIX):
         return f"❌ Boolean variable '{name}' should start with 'b'"
+
+    # Verificare stricată PascalCase / camelCase fără underscore
     if is_member:
-        if not name[0].isupper():
-            return f"❌ Member variable '{name}' should be PascalCase"
+        # PascalCase: prima literă mare, fără underscore
+        if not re.match(r'^[A-Z][A-Za-z0-9]*$', name):
+            return f"❌ Member variable '{name}' should be PascalCase (no underscores)"
     else:
-        if not name[0].islower():
-            return f"❌ Local variable '{name}' should be camelCase"
+        # camelCase: prima literă mică, fără underscore
+        if not re.match(r'^[a-z][A-Za-z0-9]*$', name):
+            return f"❌ Local variable '{name}' should be camelCase (no underscores)"
     return None
 
 # -----------------------------
@@ -57,29 +61,33 @@ def main():
 
         for i, line in enumerate(lines, start=1):
             line = line.strip()
+            
+            # Ignore comments
+            if line.startswith("//") or line.startswith("/*") or line.startswith("*"):
+                continue
 
-            # 1️⃣ Clasă
-            m_class = re.match(r'class\s+(\w+)', line)
+            # 1️⃣ Clasă / Struct
+            m_class = re.match(r'(?:class|struct)\s+(\w+)', line)
             if m_class:
                 err = check_class(m_class.group(1))
                 if err:
                     errors.append(f"{file}:{i} {err}")
 
             # 2️⃣ Funcție
-            m_func = re.match(r'(?:void|int|float|bool|[\w:<>]+)\s+(\w+)\s*\(', line)
+            m_func = re.match(r'(?:virtual\s+)?(?:inline\s+)?(?:static\s+)?(?:const\s+)?[\w:<>&*]+\s+(\w+)\s*\([^)]*\)\s*(?:const)?', line)
             if m_func:
                 err = check_function(m_func.group(1))
                 if err:
                     errors.append(f"{file}:{i} {err}")
 
             # 3️⃣ Variabilă
-            m_var = re.match(r'(bool|int|float|double|[\w:<>]+)\s+(\w+)\s*;', line)
+            m_var = re.match(r'(?:const\s+)?([\w:<>&*]+)\s+(\w+)\s*;', line)
             if m_var:
                 type_name = m_var.group(1)
                 var_name = m_var.group(2)
                 is_bool = type_name == "bool"
-                # Simplu heuristics: variabila cu literă mare la început = membră
-                is_member = var_name[0].isupper()
+                # Membru: PascalCase sau prefix 'm'
+                is_member = var_name[0].isupper() or var_name.startswith("m")
                 err = check_variable(var_name, is_bool, is_member)
                 if err:
                     errors.append(f"{file}:{i} {err}")

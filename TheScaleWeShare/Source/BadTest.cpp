@@ -15,7 +15,9 @@ public:
     void take_damage(float damageAmount)
     {
         // ❌ Variabilă locală în PascalCase (ar trebui camelCase)
+        bool isAlive;
         float NewHealth = health_points - damageAmount;
         IsAlive = (NewHealth > 0);
     }
 };
+

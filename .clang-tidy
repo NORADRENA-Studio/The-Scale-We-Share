@@ -1,0 +1,49 @@
+﻿Checks: >
+  readability-identifier-naming
+
+CheckOptions:
+  # Clase
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+  - key: readability-identifier-naming.ClassPrefix
+    value: (A|U|F|E|I)
+
+  # Structuri
+  - key: readability-identifier-naming.StructCase
+    value: CamelCase
+  - key: readability-identifier-naming.StructPrefix
+    value: F
+
+  # Funcții / Metode
+  - key: readability-identifier-naming.FunctionCase
+    value: CamelCase
+
+  # Variabile membre
+  - key: readability-identifier-naming.MemberCase
+    value: CamelCase
+  - key: readability-identifier-naming.PrivateMemberPrefix
+    value: ""
+  - key: readability-identifier-naming.ProtectedMemberPrefix
+    value: ""
+  - key: readability-identifier-naming.PublicMemberPrefix
+    value: ""
+
+  # Variabile booleene
+  - key: readability-identifier-naming.BooleanPrefix
+    value: b
+
+  # Variabile locale
+  - key: readability-identifier-naming.LocalVariableCase
+    value: camelBack
+
+  # Enumuri
+  - key: readability-identifier-naming.EnumCase
+    value: CamelCase
+  - key: readability-identifier-naming.EnumConstantCase
+    value: CamelCase
+
+  # Template Parameters (ex: TArray)
+  - key: readability-identifier-naming.TemplateParameterCase
+    value: CamelCase
+  - key: readability-identifier-naming.TemplateParameterPrefix
+    value: T

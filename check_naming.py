@@ -29,8 +29,13 @@ def check_variable(name, is_bool=False, is_member=False):
 
     # PascalCase pentru membri, camelCase pentru locale
     if is_member:
-        if not re.match(r'^[A-Z][A-Za-z0-9]*$', name):
-            return f"❌ Member variable '{name}' should be PascalCase (no underscores)"
+        if is_bool:
+            # Pentru booleeni, prefix 'b' + PascalCase după 'b'
+            if not re.match(r'^b[A-Z][A-Za-z0-9]*$', name):
+                return f"❌ Member boolean variable '{name}' should be PascalCase with prefix 'b'"
+        else:
+            if not re.match(r'^[A-Z][A-Za-z0-9]*$', name):
+                return f"❌ Member variable '{name}' should be PascalCase (no underscores)"
     else:
         if not re.match(r'^[a-z][A-Za-z0-9]*$', name):
             return f"❌ Local variable '{name}' should be camelCase (no underscores)"

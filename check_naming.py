@@ -27,13 +27,11 @@ def check_variable(name, is_bool=False, is_member=False):
     if is_bool and not name.startswith(BOOL_PREFIX):
         return f"❌ Boolean variable '{name}' should start with 'b'"
 
-    # Verificare stricată PascalCase / camelCase fără underscore
+    # PascalCase pentru membri, camelCase pentru locale
     if is_member:
-        # PascalCase: prima literă mare, fără underscore
         if not re.match(r'^[A-Z][A-Za-z0-9]*$', name):
             return f"❌ Member variable '{name}' should be PascalCase (no underscores)"
     else:
-        # camelCase: prima literă mică, fără underscore
         if not re.match(r'^[a-z][A-Za-z0-9]*$', name):
             return f"❌ Local variable '{name}' should be camelCase (no underscores)"
     return None
@@ -49,7 +47,6 @@ def main():
     path = Path(sys.argv[1])
     errors = []
 
-    # Prind toate .cpp și .h
     files = list(path.rglob("*.cpp")) + list(path.rglob("*.h"))
 
     for file in files:
@@ -59,41 +56,58 @@ def main():
             print(f"⚠️ Cannot read file {file}: {e}")
             continue
 
+        scope_stack = []  # stack cu "class" sau "function"
+        brace_level = 0
+
         for i, line in enumerate(lines, start=1):
-            line = line.strip()
-            
-            # Ignore comments
-            if line.startswith("//") or line.startswith("/*") or line.startswith("*"):
+            stripped = line.strip()
+
+            # Ignore comentarii
+            if stripped.startswith("//") or stripped.startswith("/*") or stripped.startswith("*"):
                 continue
 
-            # 1️⃣ Clasă / Struct
-            m_class = re.match(r'(?:class|struct)\s+(\w+)', line)
+            # Detectare clase / struct
+            m_class = re.match(r'(?:class|struct)\s+(\w+)', stripped)
             if m_class:
                 err = check_class(m_class.group(1))
                 if err:
                     errors.append(f"{file}:{i} {err}")
+                scope_stack.append("class")
 
-            # 2️⃣ Funcție
-            m_func = re.match(r'(?:virtual\s+)?(?:inline\s+)?(?:static\s+)?(?:const\s+)?[\w:<>&*]+\s+(\w+)\s*\([^)]*\)\s*(?:const)?', line)
-            if m_func:
+            # Detectare funcții (simplificat)
+            m_func = re.match(r'(?:virtual\s+)?(?:inline\s+)?(?:static\s+)?(?:const\s+)?[\w:<>&*]+\s+(\w+)\s*\([^)]*\)\s*(?:const)?', stripped)
+            if m_func and scope_stack and scope_stack[-1] == "class":
                 err = check_function(m_func.group(1))
                 if err:
                     errors.append(f"{file}:{i} {err}")
+                scope_stack.append("function")
 
-            # 3️⃣ Variabilă
-            m_var = re.match(r'(?:const\s+)?([\w:<>&*]+)\s+(\w+)\s*;', line)
+            # Detectare variabile
+            m_var = re.match(r'(?:const\s+)?([\w:<>&*]+)\s+(\w+)\s*;', stripped)
             if m_var:
                 type_name = m_var.group(1)
                 var_name = m_var.group(2)
                 is_bool = type_name == "bool"
-                # Membru: PascalCase sau prefix 'm'
-                is_member = var_name[0].isupper() or var_name.startswith("m")
+                # Decidem dacă e membru sau local pe baza scope
+                is_member = "class" in scope_stack and ("function" not in scope_stack)
                 err = check_variable(var_name, is_bool, is_member)
                 if err:
                     errors.append(f"{file}:{i} {err}")
 
+            # Actualizare nivel brace
+            brace_level += stripped.count("{")
+            brace_level -= stripped.count("}")
+
+            # Curățare stack la iesire din bloc
+            while scope_stack and brace_level == 0:
+                scope_stack.pop()
+
+            # Dacă ieșim din funcție (brace_level mai mic)
+            if scope_stack and scope_stack[-1] == "function" and brace_level <= 1:
+                scope_stack.pop()
+
     # -----------------------------
-    # Output și exit code
+    # Output
     # -----------------------------
     if errors:
         print("\n".join(errors))

@@ -27,7 +27,7 @@ def check_variable(name, is_bool=False, is_member=False):
     if is_bool and not name.startswith(BOOL_PREFIX):
         return f"❌ Boolean variable '{name}' should start with 'b'"
 
-    # PascalCase pentru membri, camelCase pentru variabile locale
+    # PascalCase pentru membri, camelCase pentru locale
     if is_member:
         if not re.match(r'^[A-Z][A-Za-z0-9]*$', name):
             return f"❌ Member variable '{name}' should be PascalCase (no underscores)"
@@ -56,9 +56,12 @@ def main():
             print(f"⚠️ Cannot read file {file}: {e}")
             continue
 
-        class_scope = False      # True dacă suntem în interiorul unei clase/struct
-        function_scope = 0       # >0 dacă suntem în interiorul unei funcții
-        brace_stack = []         # pentru a ține evidența blocurilor {}
+        in_class = False
+        in_function = False
+        pending_class = False
+        pending_function = False
+        class_brace_level = 0
+        function_brace_level = 0
 
         for i, line in enumerate(lines, start=1):
             stripped = line.strip()
@@ -67,48 +70,66 @@ def main():
             if stripped.startswith("//") or stripped.startswith("/*") or stripped.startswith("*"):
                 continue
 
-            # Detectare clase / struct
+            # Detectare class/struct
             m_class = re.match(r'(?:class|struct)\s+(\w+)', stripped)
             if m_class:
                 err = check_class(m_class.group(1))
                 if err:
                     errors.append(f"{file}:{i} {err}")
-                class_scope = True
+                pending_class = True
+                continue
 
-            # Detectare funcții (simplificat)
+            # Detectare funcție (doar dacă suntem în clasă)
             m_func = re.match(r'(?:virtual\s+)?(?:inline\s+)?(?:static\s+)?(?:const\s+)?[\w:<>&*]+\s+(\w+)\s*\([^)]*\)\s*(?:const)?', stripped)
-            if m_func and class_scope:
+            if m_func and in_class:
                 err = check_function(m_func.group(1))
                 if err:
                     errors.append(f"{file}:{i} {err}")
-                function_scope += 1
+                pending_function = True
+                continue
 
-            # Detectare variabile
+            # Dacă apare { activăm pending_class sau pending_function
+            if '{' in stripped:
+                if pending_class:
+                    in_class = True
+                    class_brace_level = 1
+                    pending_class = False
+                elif pending_function:
+                    in_function = True
+                    function_brace_level = 1
+                    pending_function = False
+                else:
+                    # alt block (if/for/while)
+                    if in_function:
+                        function_brace_level += 1
+                    elif in_class:
+                        class_brace_level += 1
+
+            # Dacă apare } scădem nivelul corespunzător
+            if '}' in stripped:
+                count = stripped.count('}')
+                if in_function:
+                    function_brace_level -= count
+                    if function_brace_level <= 0:
+                        in_function = False
+                        function_brace_level = 0
+                elif in_class:
+                    class_brace_level -= count
+                    if class_brace_level <= 0:
+                        in_class = False
+                        class_brace_level = 0
+
+            # Detectare variabilă
             m_var = re.match(r'(?:const\s+)?([\w:<>&*]+)\s+(\w+)\s*;', stripped)
             if m_var:
                 type_name = m_var.group(1)
                 var_name = m_var.group(2)
                 is_bool = type_name == "bool"
-                # Membri: suntem în clasă și nu în funcție
-                is_member = class_scope and function_scope == 0
+                # Membri: in_class True și in_function False
+                is_member = in_class and not in_function
                 err = check_variable(var_name, is_bool, is_member)
                 if err:
                     errors.append(f"{file}:{i} {err}")
-
-            # Actualizare brace_stack pentru a ține evidența nesting-ului
-            for char in stripped:
-                if char == '{':
-                    brace_stack.append('block')
-                elif char == '}':
-                    if brace_stack:
-                        brace_stack.pop()
-                        # Ieșim dintr-o funcție dacă function_scope > 0 și am închis blocul ei
-                        if function_scope > 0 and len(brace_stack) < function_scope:
-                            function_scope -= 1
-
-            # Ieșim din clasă dacă stack-ul gol și nu mai suntem în funcție
-            if class_scope and not brace_stack and function_scope == 0:
-                class_scope = False
 
     # -----------------------------
     # Output

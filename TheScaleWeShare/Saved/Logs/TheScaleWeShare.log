@@ -1134,3 +1134,50 @@ LogConfig: Set CVar [[r.VRS.ContrastAdaptiveShading:1]]
 [2025.09.20-16.47.16:239][ 13]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 4.909879, Update Interval: 320.653107
 [2025.09.20-16.47.20:325][289]LogSlate: Window 'Plugins' being destroyed
 [2025.09.20-16.47.20:329][289]LogSlate: Window 'Plugins' being destroyed
+[2025.09.20-16.49.08:711][847]LogDerivedDataCache: C:/Users/petri/AppData/Local/UnrealEngine/Common/DerivedDataCache: Maintenance finished in +00:00:00.000 and deleted 0 files with total size 0 MiB and 0 empty folders. Scanned 0 files in 1 folders with total size 0 MiB.
+[2025.09.20-16.51.07:607][204]LogChaosDD: Not creating Chaos Debug Draw Scene for world World_0
+[2025.09.20-16.51.07:726][205]LogChaosDD: Not creating Chaos Debug Draw Scene for world World_1
+[2025.09.20-16.51.15:085][ 73]LogSlate: Took 0.000532 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (167K)
+[2025.09.20-16.51.46:111][721]LogContentBrowser: Deferred new asset folder creation: NewFolder
+[2025.09.20-16.51.46:117][721]LogContentBrowser: Creating deferred item: NewFolder
+[2025.09.20-16.51.46:135][723]LogContentBrowser: Renaming the item being created (Deferred Item: NewFolder).
+[2025.09.20-16.51.54:621][742]LogContentBrowser: Attempting asset rename: NewFolder -> Characters
+[2025.09.20-16.51.54:621][742]LogContentBrowser: End creating deferred item NewFolder
+[2025.09.20-16.51.57:774][ 90]LogContentBrowser: Deferred new asset folder creation: NewFolder
+[2025.09.20-16.51.57:781][ 90]LogContentBrowser: Creating deferred item: NewFolder
+[2025.09.20-16.51.57:788][ 91]LogContentBrowser: Renaming the item being created (Deferred Item: NewFolder).
+[2025.09.20-16.52.02:975][714]LogContentBrowser: Attempting asset rename: NewFolder -> Marketplace
+[2025.09.20-16.52.02:975][714]LogContentBrowser: End creating deferred item NewFolder
+[2025.09.20-16.52.28:123][734]LogContentBrowser: Deferred new asset folder creation: NewFolder
+[2025.09.20-16.52.28:130][734]LogContentBrowser: Creating deferred item: NewFolder
+[2025.09.20-16.52.28:148][736]LogContentBrowser: Renaming the item being created (Deferred Item: NewFolder).
+[2025.09.20-16.52.36:574][747]LogEOSSDK: LogEOS: Updating Product SDK Config, Time: 325.578857
+[2025.09.20-16.52.36:748][768]LogEOSSDK: LogEOS: SDK Config Product Update Request Completed - No Change
+[2025.09.20-16.52.36:748][768]LogEOSSDK: LogEOS: ScheduleNextSDKConfigDataUpdate - Time: 325.745911, Update Interval: 357.674500
+[2025.09.20-16.52.55:854][ 60]LogContentBrowser: Attempting asset rename: NewFolder -> Player
+[2025.09.20-16.52.55:854][ 60]LogContentBrowser: End creating deferred item NewFolder
+[2025.09.20-16.53.00:300][578]LogContentBrowser: Deferred new asset folder creation: NewFolder
+[2025.09.20-16.53.00:307][578]LogContentBrowser: Creating deferred item: NewFolder
+[2025.09.20-16.53.00:325][580]LogContentBrowser: Renaming the item being created (Deferred Item: NewFolder).
+[2025.09.20-16.53.05:369][186]LogContentBrowser: Attempting asset rename: NewFolder -> Cockroach
+[2025.09.20-16.53.05:369][186]LogContentBrowser: End creating deferred item NewFolder
+[2025.09.20-16.53.16:855][551]LogContentBrowser: Deferred new asset folder creation: NewFolder
+[2025.09.20-16.53.16:862][551]LogContentBrowser: Creating deferred item: NewFolder
+[2025.09.20-16.53.16:879][553]LogContentBrowser: Renaming the item being created (Deferred Item: NewFolder).
+[2025.09.20-16.53.24:098][420]LogContentBrowser: Attempting asset rename: NewFolder -> Meshes
+[2025.09.20-16.53.24:098][420]LogContentBrowser: End creating deferred item NewFolder
+[2025.09.20-16.53.26:708][718]LogContentBrowser: Deferred new asset folder creation: NewFolder
+[2025.09.20-16.53.26:716][718]LogContentBrowser: Creating deferred item: NewFolder
+[2025.09.20-16.53.26:723][719]LogContentBrowser: Renaming the item being created (Deferred Item: NewFolder).
+[2025.09.20-16.53.32:668][433]LogContentBrowser: Attempting asset rename: NewFolder -> Animations
+[2025.09.20-16.53.32:669][433]LogContentBrowser: End creating deferred item NewFolder
+[2025.09.20-16.53.35:919][791]LogContentBrowser: Deferred new asset folder creation: NewFolder
+[2025.09.20-16.53.35:926][791]LogContentBrowser: Creating deferred item: NewFolder
+[2025.09.20-16.53.35:932][792]LogContentBrowser: Renaming the item being created (Deferred Item: NewFolder).
+[2025.09.20-16.53.40:571][349]LogContentBrowser: Attempting asset rename: NewFolder -> Materials
+[2025.09.20-16.53.40:572][349]LogContentBrowser: End creating deferred item NewFolder
+[2025.09.20-16.53.43:319][666]LogContentBrowser: Deferred new asset folder creation: NewFolder
+[2025.09.20-16.53.43:327][666]LogContentBrowser: Creating deferred item: NewFolder
+[2025.09.20-16.53.43:336][667]LogContentBrowser: Renaming the item being created (Deferred Item: NewFolder).
+[2025.09.20-16.53.48:305][264]LogContentBrowser: Attempting asset rename: NewFolder -> Blueprints
+[2025.09.20-16.53.48:306][264]LogContentBrowser: End creating deferred item NewFolder
